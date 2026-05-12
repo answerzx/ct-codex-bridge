@@ -1,0 +1,19 @@
+target/
+
+# macOS / editor noise
+.DS_Store
+*.swp
+*.swo
+
+# Local runtime state. These files can contain passwords, session secrets,
+# Codex account tokens, Keychain projections, logs, and backups.
+.ct-codex-bridge/
+.codex/
+.antigravity_cockpit/
+config.json
+*.log
+*.plist.local
+
+# Temporary files
+tmp/
+temp/
