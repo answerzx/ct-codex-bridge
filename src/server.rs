@@ -73,7 +73,7 @@ async fn favicon_svg() -> Response {
     (
         [
             (header::CONTENT_TYPE, "image/svg+xml; charset=utf-8"),
-            (header::CACHE_CONTROL, "public, max-age=86400"),
+            (header::CACHE_CONTROL, "no-cache"),
         ],
         CODEX_ICON_SVG,
     )
@@ -84,7 +84,7 @@ async fn apple_touch_icon() -> Response {
     (
         [
             (header::CONTENT_TYPE, "image/png"),
-            (header::CACHE_CONTROL, "public, max-age=86400"),
+            (header::CACHE_CONTROL, "no-cache"),
         ],
         APPLE_TOUCH_ICON_PNG.to_vec(),
     )
