@@ -1,9 +1,14 @@
-pub const INDEX_HTML: &str = r#"<!doctype html>
+pub const INDEX_HTML: &str = r##"<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Codex 账号桥接面板</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#edf6ff">
+  <meta name="application-name" content="Codex Bridge">
+  <meta name="apple-mobile-web-app-title" content="Codex Bridge">
   <style>
     :root {
       color-scheme: light;
@@ -1316,4 +1321,4 @@ pub const INDEX_HTML: &str = r#"<!doctype html>
   </script>
 </body>
 </html>
-"#;
+"##;

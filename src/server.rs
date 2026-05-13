@@ -12,6 +12,8 @@ use std::time::{SystemTime, UNIX_EPOCH};
 use tokio::sync::Mutex;
 
 const SESSION_COOKIE: &str = "ct_codex_bridge";
+const CODEX_ICON_SVG: &str = include_str!("../assets/codex-color.svg");
+const APPLE_TOUCH_ICON_PNG: &[u8] = include_bytes!("../assets/apple-touch-icon.png");
 
 #[derive(Clone)]
 struct AppState {
@@ -42,6 +44,9 @@ pub async fn serve(port: u16) -> Result<(), String> {
 
     let app = Router::new()
         .route("/", get(index))
+        .route("/favicon.svg", get(favicon_svg))
+        .route("/icon.svg", get(favicon_svg))
+        .route("/apple-touch-icon.png", get(apple_touch_icon))
         .route("/api/session/status", get(session_status))
         .route("/api/session/login", post(login))
         .route("/api/session/logout", post(logout))
@@ -62,6 +67,28 @@ pub async fn serve(port: u16) -> Result<(), String> {
 
 async fn index() -> Html<&'static str> {
     Html(crate::ui::INDEX_HTML)
+}
+
+async fn favicon_svg() -> Response {
+    (
+        [
+            (header::CONTENT_TYPE, "image/svg+xml; charset=utf-8"),
+            (header::CACHE_CONTROL, "public, max-age=86400"),
+        ],
+        CODEX_ICON_SVG,
+    )
+        .into_response()
+}
+
+async fn apple_touch_icon() -> Response {
+    (
+        [
+            (header::CONTENT_TYPE, "image/png"),
+            (header::CACHE_CONTROL, "public, max-age=86400"),
+        ],
+        APPLE_TOUCH_ICON_PNG.to_vec(),
+    )
+        .into_response()
 }
 
 async fn session_status(headers: HeaderMap) -> Json<SessionStatus> {
